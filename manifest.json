@@ -1,0 +1,35 @@
+{
+  "name": "Blogger Dashboard Utility",
+  "description": "Utilities for Blogger template developer and blog author.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "notifications",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.blogger.com/_/BloggerUi/data/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.blogger.com/blog/post/edit/*"
+      ],
+      "js": [
+        "inject.js"
+      ]
+    },
+    {
+      "all_frames": true,
+      "matches": [
+        "*://*.blogger.com/display*"
+      ],
+      "css": [
+        "style.css"
+      ]
+    }
+  ]
+}

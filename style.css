@@ -1,0 +1,7 @@
+#layout .widget::after {
+  content: attr(id);
+  left: 0;
+  display: block;
+  text-align: left;
+  margin-top: 5px;
+}
