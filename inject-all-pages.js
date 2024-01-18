@@ -35,12 +35,21 @@ function waitUntil(stateCheckCallback, delay = 100) {
 }
 
 function applyMutation() {
+  enchancePostEditor();
+  enhanceTemplateEditor();
+}
+
+function enchancePostEditor() {
+  let isPostOrPageEdit = ( location.href.includes('blogger.com/blog/post/edit/') || location.href.includes('blogger.com/blog/page/edit/') );
   
-  applyThemeCode();
+  if (!isPostOrPageEdit) return;
+  
+  
+  utilPostEditor.Foo();
   
 }
 
-function applyThemeCode() {
+function enhanceTemplateEditor() {
   
   if (!location.href.includes('blogger.com/blog/themes')) return;
   

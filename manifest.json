@@ -1,7 +1,7 @@
 {
   "name": "Blogger Dashboard Utility",
   "description": "Utilities for Blogger template developer and blog author.",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 3,
   "permissions": [
     "notifications",
@@ -20,17 +20,10 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.blogger.com/blog/post/edit/*"
-      ],
-      "js": [
-        "inject.js"
-      ]
-    },
-    {
-      "matches": [
         "https://*.blogger.com/blog/*"
       ],
       "js": [
+        "post-editor-util.js",
         "inject-all-pages.js"
       ]
     },
