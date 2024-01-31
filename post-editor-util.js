@@ -40,12 +40,15 @@ let utilPostEditor = (function() {
     
     // set format block
     editorEl.contentDocument.documentElement.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.key === '0') {
+      if (event.ctrlKey && event.key === '5') {
         event.preventDefault();
         editorEl.contentDocument.execCommand('formatBlock', false, 'p');
       } else if (event.ctrlKey && event.code === 'Space') {
         event.preventDefault();
         $('[aria-label="Clear formatting"]').click();
+      } else if (event.ctrlKey && event.key === 's') {
+        event.preventDefault();
+        $('[aria-label="Update"]').click();
       } else if (event.ctrlKey && event.key === 'm') {
         event.preventDefault();
         document.querySelector('iframe.editable').contentDocument.execCommand('backColor', false, '#fcff01');
