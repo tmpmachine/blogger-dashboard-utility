@@ -1,9 +1,15 @@
 chrome.webRequest.onBeforeRequest.addListener(onBeforeRequest,
-  { urls: ["https://draft.blogger.com/_/BloggerUi/data/*"], types: ["xmlhttprequest"] }
+  { urls: [
+    "https://draft.blogger.com/_/BloggerUi/data/*",
+    "https://draft.blogger.com/u/*/_/BloggerUi/data/*"
+    ], types: ["xmlhttprequest"] }
 );
 
 chrome.webRequest.onCompleted.addListener(onRequestCompleted,
-  { urls: ["https://draft.blogger.com/_/BloggerUi/data/*"], types: ["xmlhttprequest"] }
+  { urls: [
+    "https://draft.blogger.com/_/BloggerUi/data/*",
+    "https://draft.blogger.com/u/*/_/BloggerUi/data/*"
+    ], types: ["xmlhttprequest"] }
 );
 
 let isNotifiedForErrors = false;

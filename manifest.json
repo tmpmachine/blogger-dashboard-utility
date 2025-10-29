@@ -12,7 +12,8 @@
     "declarativeNetRequest"
   ],
   "host_permissions": [
-    "*://*.blogger.com/_/BloggerUi/data/*"
+    "*://*.blogger.com/_/BloggerUi/data/*",
+    "*://*.blogger.com/u/*/_/BloggerUi/data/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -20,7 +21,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.blogger.com/blog/*"
+        "https://*.blogger.com/blog/*",
+        "https://*.blogger.com/u/*/blog/*"
       ],
       "js": [
         "post-editor-util.js",
@@ -30,7 +32,8 @@
     {
       "all_frames": true,
       "matches": [
-        "*://*.blogger.com/display*"
+        "*://*.blogger.com/display*",
+        "*://*.blogger.com/u/*/display*"
       ],
       "css": [
         "style.css"
