@@ -40,10 +40,10 @@ let utilPostEditor = (function() {
       this.contentDocument.execCommand('formatBlock', false, 'p');
     } else if (event.ctrlKey && event.code === 'Space') {
       event.preventDefault();
-      $('[aria-label="Clear formatting"]').click();
+      $('[aria-label="Clear formatting"]')?.click();
     } else if (event.ctrlKey && event.key === 's') {
       event.preventDefault();
-      $('[aria-label="Update"]').click();
+      $('[aria-label="Update"]')?.click();
     } else if (event.ctrlKey && event.key === 'm') {
       event.preventDefault();
       this.contentDocument.execCommand('backColor', false, '#fcff01');
