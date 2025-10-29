@@ -49,15 +49,15 @@ applyMutation();
 applyUpdateWatcher();
 
 function waitUntil(stateCheckCallback, delay = 100) {
-    return new Promise(resolve => {
-        let interval = window.setInterval(() => {
-        let shouldResolve = stateCheckCallback();
-        if (shouldResolve) {
-            window.clearInterval(interval);
-            resolve();
-        }
-        }, delay);
-    });
+  return new Promise(resolve => {
+      let interval = window.setInterval(() => {
+      let shouldResolve = stateCheckCallback();
+      if (shouldResolve) {
+          window.clearInterval(interval);
+          resolve();
+      }
+      }, delay);
+  });
 }
 
 function applyMutation() {
@@ -66,18 +66,17 @@ function applyMutation() {
 }
 
 function enchancePostEditor() {
-  let isPostOrPageEdit = ( location.href.includes('blogger.com/blog/post/edit/') || location.href.includes('blogger.com/blog/page/edit/') );
+  let isPostOrPageEdit = ( location.href.includes('/post/edit/') || location.href.includes('/page/edit/') );
   
   if (!isPostOrPageEdit) return;
   
-  
-  utilPostEditor.Foo();
+  utilPostEditor.Init();
   
 }
 
 function enhanceTemplateEditor() {
   
-  if (!location.href.includes('blogger.com/blog/themes')) return;
+  if (!location.href.includes('/blog/themes/edit')) return;
   
   waitUntil(() => {
     return $('.CodeMirror');

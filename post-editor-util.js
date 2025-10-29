@@ -3,7 +3,7 @@ let utilPostEditor = (function() {
   let $ = document.querySelector.bind(document);
   
   let SELF = {
-    Foo,
+    Init,
   };
   
   function waitUntil(stateCheckCallback, delay = 100) {
@@ -18,43 +18,36 @@ let utilPostEditor = (function() {
     });
   }
   
-  async function Foo() {
+  async function Init() {
     
     await waitUntil(() => {
       return $('iframe.editable');
-    }).then(() => {
-      injectScript();
     });
     
-    let editorEl = $('iframe.editable');
-    if (editorEl.dataset.isToolsLoaded) return;
-  
     attachKeyboardListeners();
-    
   }
   
   function attachKeyboardListeners() {
-    
-    let editorEl = document.querySelector('iframe.editable');
-    editorEl.dataset.isToolsLoaded = true;
-    
-    // set format block
-    editorEl.contentDocument.documentElement.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.key === '5') {
-        event.preventDefault();
-        editorEl.contentDocument.execCommand('formatBlock', false, 'p');
-      } else if (event.ctrlKey && event.code === 'Space') {
-        event.preventDefault();
-        $('[aria-label="Clear formatting"]').click();
-      } else if (event.ctrlKey && event.key === 's') {
-        event.preventDefault();
-        $('[aria-label="Update"]').click();
-      } else if (event.ctrlKey && event.key === 'm') {
-        event.preventDefault();
-        document.querySelector('iframe.editable').contentDocument.execCommand('backColor', false, '#fcff01');
-      }
-    });
-    
+    for (let editorEl of document.querySelectorAll('iframe.editable')) {
+      editorEl.contentDocument.documentElement.removeEventListener('keydown', keyListener.bind(editorEl));
+      editorEl.contentDocument.documentElement.addEventListener('keydown', keyListener.bind(editorEl));
+    }
+  }
+  
+  function keyListener(event) {
+    if (event.ctrlKey && event.key === '5') {
+      event.preventDefault();
+      this.contentDocument.execCommand('formatBlock', false, 'p');
+    } else if (event.ctrlKey && event.code === 'Space') {
+      event.preventDefault();
+      $('[aria-label="Clear formatting"]').click();
+    } else if (event.ctrlKey && event.key === 's') {
+      event.preventDefault();
+      $('[aria-label="Update"]').click();
+    } else if (event.ctrlKey && event.key === 'm') {
+      event.preventDefault();
+      this.contentDocument.execCommand('backColor', false, '#fcff01');
+    }
   }
   
   return SELF;
