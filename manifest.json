@@ -4,20 +4,10 @@
   "version": "1.2",
   "manifest_version": 3,
   "permissions": [
-    "notifications",
-    "webRequest",
     "tabs",
     "scripting",
-    "activeTab",
-    "declarativeNetRequest"
+    "activeTab"
   ],
-  "host_permissions": [
-    "*://*.blogger.com/_/BloggerUi/data/*",
-    "*://*.blogger.com/u/*/_/BloggerUi/data/*"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
       "matches": [

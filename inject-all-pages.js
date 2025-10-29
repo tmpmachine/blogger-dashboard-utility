@@ -4,13 +4,7 @@ let targetElement = $('title');
 if (targetElement) {
 	const observer = new MutationObserver(async (mutationsList, observer) => {
 		for (const mutation of mutationsList) {
-            // console.log(mutation.target.textContent.trim())
-			// if (mutation.attributeName == 'selected') {
-                // todo:
-			// }
-			
 			applyMutation()
-			
 		}
 	});
 	
@@ -22,31 +16,7 @@ if (targetElement) {
 
 let init = false;
 
-async function applyUpdateWatcher() {
-  
-  await waitUntil(() => $('[aria-live="polite"]'), 200);
-  
-  const observer = new MutationObserver( (mutationsList, observer) => {
-		for (const mutation of mutationsList) {
-      
-      if (mutation.target.textContent.trim() == 'Update successful.') {
-        chrome.runtime.sendMessage({
-          action: 'sendMessageFromBackground',
-          data: 200,
-        });
-      }
-      
-		}
-	});
-	
-	const config = { 
-	    childList: true, 
-    };
-	observer.observe($('[aria-live="polite"]'), config);
-}
-
 applyMutation();
-applyUpdateWatcher();
 
 function waitUntil(stateCheckCallback, delay = 100) {
   return new Promise(resolve => {
